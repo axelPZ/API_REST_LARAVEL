@@ -37,7 +37,9 @@ class validateJWT
 
                 if( isset( $user ) && is_object( $user ) ){
 
-                    $request->user = $user; // agrego el usuario a la request
+                    config(['user.id' => $user['id']]);
+
+                    //$request->user = $user; // agrego el usuario a la request
                     return $next($request);
 
                 }else{

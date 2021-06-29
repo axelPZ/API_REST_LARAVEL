@@ -67,6 +67,8 @@ class Kernel extends HttpKernel
         'validateJWT'       =>   \App\Http\Middleware\myMiddlewares\validateJWT::class,
         'isAdminRole'       =>   \App\Http\Middleware\myMiddlewares\isAdminRole::class,
         'roleExist'         =>   \App\Http\Middleware\myMiddlewares\roleExist::class,
-        'collectionExist'   =>   \App\Http\Middleware\myMiddlewares\validateCollection::class
+        'collectionExist'   =>   \App\Http\Middleware\myMiddlewares\validateCollection::class,
+        'existCategory'     =>   \App\Http\Middleware\myMiddlewares\categoryExist::class,
+
     ];
 }

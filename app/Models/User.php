@@ -41,4 +41,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //relacion de uno a muschos cuando se mande a llamar la tabla
+    public function categories(){
+
+        return $this->hasMany('App\Models\Category');
+    }
+
 }
