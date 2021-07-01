@@ -4,6 +4,7 @@ namespace App\Http\Middleware\myMiddlewares;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class isAdminRole
 {
@@ -16,9 +17,11 @@ class isAdminRole
      */
     public function handle(Request $request, Closure $next)
     {
-        $data = $request->user; // extraigo el usuario de la request que e ingresado en el middleware de validacion
 
-        if( strstr($data['usr_role'], 'ADMIN_ROLE')){
+        $id = config('user.id');
+        $user = User::findOrFail( $id );
+
+        if( strstr($user['usr_role'], 'ADMIN_ROLE')){
 
             return $next($request);
 
@@ -26,7 +29,7 @@ class isAdminRole
             return response()->json(
                 [
                     'status' => 'error',
-                    'message'  =>  'Usuario: '. $data['usr_name'] . ' sin permisos, para realizar esta accion'
+                    'message'  =>  'Usuario: '. $user['usr_name'] . ' sin permisos, para realizar esta accion'
                 ],400);
         }
     }

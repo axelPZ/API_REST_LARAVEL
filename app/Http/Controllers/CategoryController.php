@@ -15,6 +15,7 @@ class CategoryController extends Controller
     {
         $this->middleware('existCategory',   ['except' => [ 'index', 'store' ] ] );
         $this->middleware('validateJWT', ['except' => [ 'index', 'show' ] ] );
+        $this->middleware('isAdminRole', ['only' => [ 'destroy' ] ] );
     }
 
     // TODAS LAS CATEGORIAS
@@ -57,14 +58,35 @@ class CategoryController extends Controller
     }
 
     // EDITAR CATEGORIA
-    public function update(CategoryRequest $request, Category $category)
+    public function update(CategoryRequest $request, $category)
     {
-        //
+
+        $data = $request->json()->all();
+        $userId = config('user.id');
+
+        $idUserCategory = Category::where('id', $category)->first('cat_userId');
+
+        if( $idUserCategory['cat_userId'] != $userId ){
+            return response()->json([
+                'message' => 'El usuario no es duenio de la categoria'
+            ],400);
+        }
+
+        $updateUser = Category::where('id', $category)->update( [ 'cat_name' => strtoupper( $data[ 'cat_name'] ) ] );
+        $category = Category::where('id', $category)->first();
+
+        return response()->json([
+            'message' => 'La categoria se actualizo correctamente',
+            'category' => $category
+        ], 200);
     }
 
    // ELIMINAR CATEGORIA
-    public function destroy(Category $category)
+    public function destroy($category)
     {
-        //
+        $deleteCategory = Category::find( $category )->delete();
+        return response()->json([
+            'message' => 'Categoria eliminada'
+        ], 200);
     }
 }

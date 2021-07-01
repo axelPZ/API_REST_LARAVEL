@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Category;
 
 class SearchController extends Controller
 {
@@ -42,10 +43,7 @@ class SearchController extends Controller
                 'total' => $results[1],
                 'result' => $results[0]
             ],400);
-
     }
-
-
 
     // BUSCAR USUARIO
     public function searchUser( $term = '' ){
@@ -77,10 +75,12 @@ class SearchController extends Controller
 
     }
 
-
     // BUSCAR CATEGORIA
     public function searchCategories( $termino = '' ){
 
+        $result = Category::where('cat_name', 'LIKE', "%$termino%")->get();
+        $count = sizeof( $result );
+        return array( $result, $count );
 
     }
 }

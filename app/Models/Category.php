@@ -19,6 +19,7 @@ class Category extends Model
      protected $hidden = [
         'deleted_at',
         'remember_token',
+        'cat_userId'
     ];
 
      // los campos de nuestros modelos
