@@ -4,7 +4,7 @@ namespace App\helpers;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-// use App\Models\Category;
+use App\Models\Category;
 // use App\Models\Post;
 
 class saveImg
@@ -30,14 +30,14 @@ class saveImg
                 $model = User::where('id', $id)->first();
                 break;
 
-            // case 'categories':
+            case 'categories':
 
-            //     $result = Category::where('cat_id', $id)->first('cat_img');
-            //     $updateModel = Category::where( 'cat_id',$id )->update( ['cat_img' => $path ]  );
-            //     $img = $result['cat_img'];
+                $result = Category::where('id', $id)->first('cat_img');
+                $updateModel = Category::where( 'id',$id )->update( ['cat_img' => $path ]  );
+                $img = $result['cat_img'];
 
-            //     $model = Category::where('cat_id', $id)->first();
-            //     break;
+                $model = Category::where('id', $id)->first();
+                break;
 
 
             // case 'posts':

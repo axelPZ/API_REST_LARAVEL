@@ -4,7 +4,7 @@ namespace App\helpers;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-// use App\Models\Category;
+use App\Models\Category;
 // use App\Models\Post;
 
 class validateId
@@ -20,7 +20,7 @@ class validateId
                 break;
 
             case 'categories':
-                    //$result = Category::where('cat_id', $id)->first();
+                    $result = Category::where('id', $id)->first();
                 break;
 
             case 'posts':
