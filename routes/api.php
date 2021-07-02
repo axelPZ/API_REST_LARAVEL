@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UploadsController;
 use App\Http\Controllers\UserController;
@@ -41,3 +42,6 @@ Route::get('/uploads/{collection}/{id}', [UploadsController::class, 'getImg'])->
 
 // RUTAS DE LAS CATEGORIAS
 Route::apiResource('/category', CategoryController::class)->middleware('api');
+
+// RUTAS DEL POST
+Route::apiResource('/post', PostController::class)->middleware('api');

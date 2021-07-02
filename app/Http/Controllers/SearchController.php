@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Post;
 
 class SearchController extends Controller
 {
@@ -73,6 +74,9 @@ class SearchController extends Controller
     // BUSCAR POST
     public function searchPost( $termino = '' ){
 
+        $result = Post::where('pst_title', 'LIKE', "%$termino%")->get();
+        $count = sizeof( $result );
+        return array( $result, $count );
     }
 
     // BUSCAR CATEGORIA

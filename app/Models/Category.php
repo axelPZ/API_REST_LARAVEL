@@ -34,4 +34,10 @@ class Category extends Model
     {
         return $this->belongsTo('App\Models\User','cat_userId');
     }
+
+    // relacion de uno a muchos
+    public function post()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
 }

@@ -5,7 +5,7 @@ namespace App\helpers;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Category;
-// use App\Models\Post;
+use App\Models\Post;
 
 class validateId
 {
@@ -24,7 +24,7 @@ class validateId
                 break;
 
             case 'posts':
-                    //$result = Post::where('pst_id', $id)->first();
+                    $result = Post::where('id', $id)->first();
                 break;
 
             default:

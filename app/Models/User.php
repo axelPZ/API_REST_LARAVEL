@@ -42,10 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    //relacion de uno a muschos cuando se mande a llamar la tabla
+    //relacion de uno a muschos a las categorias
     public function categories(){
 
         return $this->hasMany('App\Models\Category');
     }
 
+    // relacion de uno a muchos a los post
+    public function posts(){
+        return $this->belongsTo('App\Models\Post');
+    }
 }

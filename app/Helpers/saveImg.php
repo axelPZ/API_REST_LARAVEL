@@ -5,7 +5,7 @@ namespace App\helpers;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Category;
-// use App\Models\Post;
+use App\Models\Post;
 
 class saveImg
 {
@@ -40,14 +40,14 @@ class saveImg
                 break;
 
 
-            // case 'posts':
+            case 'posts':
 
-            //         $result = Post::where('pst_id', $id)->first('pst_img');
-            //         $updateModel = Post::where( 'pst_id',$id )->update( ['pst_img' => $path ]  );
-            //         $img = $result['pst_img'];
+                    $result = Post::where('id', $id)->first('pst_img');
+                    $updateModel = Post::where( 'id',$id )->update( ['pst_img' => $path ]  );
+                    $img = $result['pst_img'];
 
-            //         $model = Post::where('pst_id', $id)->first();
-            //         break;
+                    $model = Post::where('id', $id)->first();
+                    break;
 
             default:
                 $result = [];
